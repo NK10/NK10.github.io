@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Narrative Visualization-CS489</title>
+
+    <script type="text/javascript" src="Narrative_visualization.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        margin = {top: 25, right: 30, bottom: 120, left: 60},
+            width = 980 - margin.left - margin.right,
+            height = 550 - margin.top - margin.bottom;
+    </script>
+    <style>
+
+        .top_level_window {
+            color: #373c40;
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+            margin: auto;
+            font-size: 23px;
+            padding: 0px;
+            border-style: solid;
+            border-bottom-width: 1px;
+            border-width: 0px 0px 1px 0px;
+            padding-bottom: 10px;
+        }
+
+        .hoverText {
+            font-weight: bold;
+        }
+
+        .scene3box {
+            visibility: hidden;
+            display: inline-block;
+        }
+
+        .main_window {
+            width: 1250px;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 13px;
+            padding-left: 13px;
+        }
+
+        .scene_box {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .left_navigation {
+            width: 9%;
+            float: left;
+            padding-top: 220px;
+        }
+
+        .graph_box {
+            width: 80%;
+            float: left;
+            height: 500px;
+            border-style: solid;
+            border-width: 1px;
+            padding: 5px;
+            border-color: #dae0e5;
+            float: left;
+            margin-top: 15px;
+        }
+
+        .right_navigation {
+            width: 9%;
+            float: left;
+            padding-top: 220px;
+            text-align: center
+        }
+
+        .red {
+            background-color: blue;
+        }
+
+        .orange {
+            background-color: blue;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: #fff;
+
+        }
+
+        .message_box {
+            width: 82%;
+            margin: auto;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #dae0e5;
+        }
+
+        .country {
+            float: left;
+            font-weight: bold;
+            margin-right: 5px;
+            color: black;
+        }
+
+        .line_orange {
+            fill: none;
+            stroke: #ffab00;
+            stroke-width: 3;
+        }
+
+        .line_blue {
+            fill: none;
+            stroke: #0004ff;
+            stroke-width: 3;
+        }
+
+
+        .dot_orange {
+            fill: #ffab00;
+            stroke: #fff;
+
+        }
+
+        .dot_blue {
+            fill: #0004ff;
+            stroke: #fff;
+
+        }
+
+
+        .annotationBox {
+            height: 50px;
+            width: 320px;
+            fill: #dae0e5;
+        }
+
+
+        .annotationText {
+            font-size: 15px;
+        }
+
+        .tooltip {
+            background-color: #f2f2f5;
+            border-style: solid;
+            border-width: 1px;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body onload="init()">
+<div class="main_window">
+    <div class="top_level_window">
+        How World GDP per Capita and Mortality changes over time
+    </div>
+    <div class="scene_box">
+        <div class="left_navigation" onclick="moveToScene('Previous')">
+            <button type="button" class="btn btn-primary orange"><a >Previous</a>
+            </button>
+        </div>
+        <div class="graph_box">
+            <div class="scene3box" id="scene3box_id" >
+                <div style="float: left">
+                    <div class="country">Country</div>
+                    <select id="dropDownId">
+                    </select>
+                </div>
+                <div style="float: left">
+                    <form id="radioButtonId">
+                        <label><input type="radio" name="gdpmortality" value="0" checked> GDP</label>
+                        <label><input type="radio" name="gdpmortality" value="1"> Mortality</label>
+                    </form>
+                </div>
+            </div>
+            <div id="chartBoxId">
+                <svg>
+                    <div>
+                    </div>
+                </svg>
+            </div>
+        </div>
+        <div class="right_navigation" onclick="moveToScene('Next')">
+            <button type="button" class="btn btn-primary    red"><a >Next</a></button>
+        </div>
+    </div>
+    <div>
+        <hr/>
+    </div>
+</div>
+</body>
+</html>
